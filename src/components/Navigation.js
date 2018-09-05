@@ -5,29 +5,24 @@ import Payments from "./Payments";
 
 class Header extends Component {
   renderContent() {
-    switch (this.props.auth) {
-      case null:
-        return;
-      case false:
-        return (
-          <li>
-            <a href={`${process.env.REACT_APP_GOOGLE_AUTH}`}>
-              Login With Google
-            </a>
-          </li>
-        );
-      default:
-        return [
-          <li key="1">
-            <Payments />
-          </li>,
-          <li key="3" style={{ margin: "0 10px" }}>
-            Credits: {this.props.auth.credits}
-          </li>,
-          <li key="2">
-            <a href="/api/logout">Logout</a>
-          </li>
-        ];
+    if (!this.props.auth) {
+      return (
+        <li>
+          <Link to="/login-register">Login/Register</Link>
+        </li>
+      );
+    } else {
+      return [
+        <li key="1">
+          <Payments />
+        </li>,
+        <li key="3" style={{ margin: "0 10px" }}>
+          Credits: {this.props.auth.credits}
+        </li>,
+        <li key="2">
+          <a href="/api/logout">Logout</a>
+        </li>
+      ];
     }
   }
 
