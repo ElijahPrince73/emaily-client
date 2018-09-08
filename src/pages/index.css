@@ -1,0 +1,25 @@
+.form-container {
+  margin-top: 3%;
+  border-radius: 5px;
+  padding: 5% !important;
+}
+
+.background {
+  background-color: #0d47a1 !important;
+}
+
+.box {
+  background-color: #1565c0 !important;
+  padding: 2% !important;
+}
+.box-right {
+  border-top-right-radius: 5px;
+}
+.box-left {
+  border-top-left-radius: 5px;
+  border-right: 1px solid black;
+}
+
+.active-tab {
+  background-color: #1e88e5 !important;
+}

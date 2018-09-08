@@ -5,13 +5,7 @@ import Payments from "./Payments";
 
 class Header extends Component {
   renderContent() {
-    if (!this.props.auth) {
-      return (
-        <li>
-          <Link to="/login-register">Login/Register</Link>
-        </li>
-      );
-    } else {
+    if (this.props.auth) {
       return [
         <li key="1">
           <Payments />
@@ -29,7 +23,7 @@ class Header extends Component {
   render() {
     return (
       <nav>
-        <div className="nav-wrapper">
+        <div className="nav-wrapper blue darken-4">
           <Link
             to={this.props.auth ? "/surveys" : "/"}
             className="left brand-logo"

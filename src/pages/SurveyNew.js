@@ -1,8 +1,8 @@
 // SurveyNew shows SurveyForm and SurveyFormReview
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
-import SurveyForm from './SurveyForms';
-import SurveyFormReview from './SurveyFormReview';
+import SurveyForm from '../components/surveys/SurveyForms';
+import SurveyFormReview from '../components/surveys/SurveyFormReview';
 
 class SurveyNew extends Component {
 	state = { showFormReview: false };
