@@ -23,3 +23,11 @@
 .active-tab {
   background-color: #1e88e5 !important;
 }
+
+.surveys-page {
+  background: white;
+}
+
+.padding-bottom {
+  padding-bottom: 5%;
+}

@@ -48,13 +48,14 @@ class LoginRegister extends Component {
 
         {this.state.activeTab ? (
           <form
-            onSubmit={handleLogin}
+            onSubmit={handleSubmit(handleLogin)}
             className="form-container grey lighten-5 center-align"
           >
             <div className="row">
               <div className="input-field col s12">
                 <Field
                   name="email"
+                  type="email"
                   className="validate"
                   component="input"
                   placeholder="email"
@@ -65,6 +66,7 @@ class LoginRegister extends Component {
               <div className="input-field col s12">
                 <Field
                   name="password"
+                  type="password"
                   className="validate"
                   component="input"
                   placeholder="password"
@@ -97,6 +99,7 @@ class LoginRegister extends Component {
             <div className="row">
               <div className="input-field col s12">
                 <Field
+                  type="password"
                   name="password"
                   className="validate"
                   component="input"
@@ -108,6 +111,7 @@ class LoginRegister extends Component {
               <div className="input-field col s12">
                 <Field
                   name="passwordConf"
+                  type="password"
                   className="validate"
                   component="input"
                   placeholder="password confirmation"

@@ -8,8 +8,8 @@ class Landing extends Component {
     error: false,
     errorMessage: ""
   };
-  handleLogin(e) {
-    e.preventDefault();
+  handleLogin(values) {
+    this.props.loginUser(values);
   }
 
   handleRegister(values) {
@@ -18,7 +18,7 @@ class Landing extends Component {
 
   render() {
     return (
-      <div className="row blue darken-4 landing">
+      <div className="row blue darken-4 landing padding-bottom">
         <div className="container">
           <div className="col s6">
             <h3 className="white-text">Collect feedback from your users</h3>
