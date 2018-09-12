@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { fetchSurveys } from "../actions";
+import Loader from "../components/Loader";
 
 class SurveyList extends Component {
   componentDidMount() {
@@ -11,11 +12,7 @@ class SurveyList extends Component {
     if (this.props.surveys.length) {
       return this.props.surveys.reverse().map(survey => {
         return (
-          <div
-            className="card darken-1 blue-grey"
-            style={{ color: "white" }}
-            key={survey._id}
-          >
+          <div className="card grey lighten-2" key={survey._id}>
             <div className="card-content">
               <span className="card-title">{survey.title}</span>
               <p>{survey.body}</p>
@@ -24,34 +21,31 @@ class SurveyList extends Component {
               </p>
             </div>
             <div className="card-action">
-              <a>Yes: {survey.yes}</a>
-              <a>No: {survey.no}</a>
+              <a className="light-green-text darken-4">Yes: {survey.yes}</a>
+              <a className="light-green-text darken-4">No: {survey.no}</a>
             </div>
           </div>
         );
       });
-    } else if (this.props.surveys.length === 0) {
-      return (
-        <div className="center">
-          <h4 className="">Start by adding credits to your account</h4>
-        </div>
-      );
     } else {
       return (
         <div className="center">
-          <h4 className="">LOADING...</h4>
+          <h4 className="">No surveys available</h4>
         </div>
       );
     }
   }
 
   render() {
-    return <div className="surveys-page">{this.renderSurveys()}</div>;
+    if (this.props.surveys.length === 0) {
+      return <Loader />;
+    }
+    return <div className="surveys-page container">{this.renderSurveys()}</div>;
   }
 }
 
-function mapStateToProps({ surveys }) {
-  return { surveys };
+function mapStateToProps({ surveys, auth }) {
+  return { surveys, auth };
 }
 
 export default connect(

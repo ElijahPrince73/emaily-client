@@ -8,6 +8,7 @@ class Landing extends Component {
     error: false,
     errorMessage: ""
   };
+
   handleLogin(values) {
     this.props.loginUser(values);
   }
@@ -17,6 +18,9 @@ class Landing extends Component {
   }
 
   render() {
+    if (localStorage.getItem("header")) {
+      window.location.href = "/surveys";
+    }
     return (
       <div className="row blue darken-4 landing padding-bottom">
         <div className="container">

@@ -31,3 +31,19 @@
 .padding-bottom {
   padding-bottom: 5%;
 }
+
+.push-top {
+  margin-top: 5%;
+}
+
+.preloader-background {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
