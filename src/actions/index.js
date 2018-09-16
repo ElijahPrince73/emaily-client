@@ -1,11 +1,13 @@
 import axios from "axios";
 import { FETCH_USER, FETCH_SURVEYS, POST_USER } from "./types";
 const header = localStorage.getItem("header");
+
 // Gets current user
 export const fetchUser = () => async dispatch => {
   const res = await axios.get(process.env.REACT_APP_GET_CURRENT_USER, {
     headers: { "x-auth": header }
   });
+
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
@@ -35,6 +37,17 @@ export const loginUser = values => async dispatch => {
     window.location.href = "/surveys";
   }
   dispatch({ type: POST_USER, payload: res.data });
+};
+
+export const logoutUser = values => async dispatch => {
+  const res = await axios
+    .delete(process.env.REACT_APP_LOGOUT_USER, {
+      headers: { "x-auth": header }
+    })
+    .then(() => {
+      localStorage.removeItem("header");
+      window.location.href = "/";
+    });
 };
 
 export const registerUser = values => async dispatch => {

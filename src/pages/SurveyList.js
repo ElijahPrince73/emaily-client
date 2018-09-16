@@ -4,6 +4,9 @@ import { fetchSurveys } from "../actions";
 import Loader from "../components/Loader";
 
 class SurveyList extends Component {
+  state = {
+    loading: true
+  };
   componentDidMount() {
     this.props.fetchSurveys();
   }
@@ -37,9 +40,6 @@ class SurveyList extends Component {
   }
 
   render() {
-    if (this.props.surveys.length === 0) {
-      return <Loader />;
-    }
     return <div className="surveys-page container">{this.renderSurveys()}</div>;
   }
 }

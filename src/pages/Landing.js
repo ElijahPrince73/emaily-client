@@ -18,9 +18,7 @@ class Landing extends Component {
   }
 
   render() {
-    if (localStorage.getItem("header")) {
-      window.location.href = "/surveys";
-    }
+    // const header = JSON.parse(localStorage.getItem("header"));
     return (
       <div className="row blue darken-4 landing padding-bottom">
         <div className="container">

@@ -2,21 +2,29 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import Payments from "./Payments";
+import * as actions from "../actions";
 
 class Header extends Component {
+  handleLogout() {
+    const { logoutUser } = this.props;
+    logoutUser();
+  }
+
   renderContent() {
     if (this.props.auth) {
-      return [
-        <li key="1">
-          <Payments />
-        </li>,
-        <li key="3" style={{ margin: "0 10px" }}>
-          Credits: {this.props.auth.credits}
-        </li>,
-        <li key="2">
-          <a href="/api/logout">Logout</a>
-        </li>
-      ];
+      return (
+        <div>
+          <li>
+            <Payments />
+          </li>
+          <li style={{ margin: "0 10px" }}>
+            Credits: {this.props.auth.credits}
+          </li>
+          <li>
+            <a onClick={this.handleLogout.bind(this)}>Logout</a>
+          </li>
+        </div>
+      );
     }
   }
 
@@ -41,4 +49,7 @@ function mapStateToProps({ auth }) {
   return { auth };
 }
 
-export default connect(mapStateToProps)(Header);
+export default connect(
+  mapStateToProps,
+  actions
+)(Header);
