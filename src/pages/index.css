@@ -47,3 +47,9 @@
   right: 0;
   bottom: 0;
 }
+
+.card-action {
+  display: flex;
+  justify-content: space-evenly;
+  width: 20%;
+}

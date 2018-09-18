@@ -1,5 +1,5 @@
 import axios from "axios";
-import { FETCH_USER, FETCH_SURVEYS, POST_USER } from "./types";
+import { FETCH_USER, FETCH_SURVEYS, FETCH_SURVEY, POST_USER } from "./types";
 const header = localStorage.getItem("header");
 
 // Gets current user
@@ -18,6 +18,15 @@ export const fetchSurveys = () => async dispatch => {
   });
 
   dispatch({ type: FETCH_SURVEYS, payload: res.data });
+};
+
+// Gets a single survey
+export const fetchSingleSurvey = value => async dispatch => {
+  const res = await axios.get(`${process.env.REACT_APP_SURVEYS}/${value.id}`, {
+    headers: { "x-auth": header }
+  });
+
+  dispatch({ type: FETCH_SURVEY, payload: res.data });
 };
 
 // POST Used in SurveyFormReview.js
