@@ -11,7 +11,7 @@ class ViewSurvey extends Component {
 
   render() {
     const { survey } = this.props;
-    console.log(survey);
+
     return (
       <div>
         {survey.length === 0 ? (
