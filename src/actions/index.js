@@ -49,7 +49,7 @@ export const loginUser = values => async dispatch => {
 };
 
 export const logoutUser = values => async dispatch => {
-  const res = await axios
+  await axios
     .delete(process.env.REACT_APP_LOGOUT_USER, {
       headers: { "x-auth": header }
     })
