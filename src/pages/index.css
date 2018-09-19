@@ -33,7 +33,7 @@
 }
 
 .push-top {
-  margin-top: 5%;
+  margin-top: 5% !important;
 }
 
 .preloader-background {
@@ -52,4 +52,12 @@
   display: flex;
   justify-content: space-evenly;
   width: 20%;
+}
+
+nav .brand-logo {
+  left: 1%;
+}
+
+.hidden {
+  display: none;
 }

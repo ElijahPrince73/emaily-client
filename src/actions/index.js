@@ -1,5 +1,11 @@
 import axios from "axios";
-import { FETCH_USER, FETCH_SURVEYS, FETCH_SURVEY, POST_USER } from "./types";
+import {
+  FETCH_USER,
+  FETCH_SURVEYS,
+  FETCH_SURVEY,
+  POST_USER,
+  ERROR
+} from "./types";
 const header = localStorage.getItem("header");
 
 // Gets current user
@@ -42,10 +48,12 @@ export const loginUser = values => async dispatch => {
   const res = await axios.post(process.env.REACT_APP_LOGIN_USER, values);
 
   if (res.data.tokens[0].token) {
+    dispatch({ type: POST_USER, payload: res.data });
     localStorage.setItem("header", res.data.tokens[0].token);
     window.location.href = "/surveys";
+  } else {
+    dispatch({ type: ERROR, payload: "Invalid Request" });
   }
-  dispatch({ type: POST_USER, payload: res.data });
 };
 
 export const logoutUser = values => async dispatch => {

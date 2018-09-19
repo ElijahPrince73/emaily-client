@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
+import LoaderSm from "../components/LoaderSm";
+import ErrorMessage from "../components/ErrorMessage";
 
 class LoginRegister extends Component {
   state = {
@@ -20,8 +22,18 @@ class LoginRegister extends Component {
   }
 
   render() {
-    const { handleLogin, handleRegister, handleSubmit } = this.props;
+    const {
+      handleLogin,
+      handleRegister,
+      handleSubmit,
+      loading,
+      hidden,
+      isError,
+      errorMessage
+    } = this.props;
+
     return (
+      // Tab Bar
       <div>
         <div className="switcher">
           <div
@@ -46,6 +58,7 @@ class LoginRegister extends Component {
           </div>
         </div>
 
+        {/* Forms */}
         {this.state.activeTab ? (
           <form
             onSubmit={handleSubmit(handleLogin)}
@@ -74,12 +87,16 @@ class LoginRegister extends Component {
               </div>
             </div>
             <button
-              className="btn waves-effect waves-light blue darken-3"
+              className={
+                hidden ? "hidden" : "btn waves-effect waves-light blue darken-3"
+              }
               type="submit"
               name="action"
             >
               Submit
             </button>
+            {loading ? <LoaderSm /> : null}
+            {isError ? <ErrorMessage errorMessage={errorMessage} /> : null}
           </form>
         ) : (
           <form
@@ -120,12 +137,16 @@ class LoginRegister extends Component {
             </div>
 
             <button
-              className="btn waves-effect waves-light blue darken-3"
+              className={
+                hidden ? "hidden" : "btn waves-effect waves-light blue darken-3"
+              }
               type="submit"
               name="action"
             >
               Submit
             </button>
+            {loading ? <LoaderSm /> : null}
+            {isError ? <ErrorMessage errorMessage={errorMessage} /> : null}
           </form>
         )}
       </div>

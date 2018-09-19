@@ -5,24 +5,54 @@ import * as actions from "../actions";
 
 class Landing extends Component {
   state = {
-    error: false,
+    loading: false,
+    hidden: false,
+    isError: false,
     errorMessage: ""
   };
 
   handleLogin(values) {
-    this.props.loginUser(values);
+    const { loginUser, auth } = this.props;
+
+    loginUser(values);
+
+    if (auth === "Invalid Request" || auth === null || auth === "") {
+      this.setState({
+        isError: true,
+        errorMessage: "Invalid Request"
+      });
+    } else {
+      this.setState({
+        loading: true,
+        hidden: true
+      });
+    }
   }
 
   handleRegister(values) {
-    this.props.registerUser(values);
+    const { registerUser, auth } = this.props;
+
+    registerUser(values);
+
+    if (auth === "Invalid Request" || auth === null || auth === "") {
+      this.setState({
+        isError: true,
+        errorMessage: "Invalid Request"
+      });
+    } else {
+      this.setState({
+        loading: true,
+        hidden: true
+      });
+    }
   }
 
   render() {
-    // const header = JSON.parse(localStorage.getItem("header"));
+    console.log(this.props);
     return (
       <div className="row blue darken-4 landing padding-bottom">
         <div className="container">
-          <div className="col s6">
+          <div className="col m6 ">
             <h3 className="white-text">Collect feedback from your users</h3>
             <p className="white-text">
               Lorem Ipsum is simply dummy text of the printing and typesetting
@@ -31,10 +61,14 @@ class Landing extends Component {
               type and scrambled
             </p>
           </div>
-          <div className="col s6">
+          <div className="col m6 s12">
             <LoginRegister
               handleLogin={this.handleLogin.bind(this)}
               handleRegister={this.handleRegister.bind(this)}
+              loading={this.state.loading}
+              hidden={this.state.hidden}
+              isError={this.state.isError}
+              errorMessage={this.state.errorMessage}
             />
           </div>
         </div>
@@ -42,8 +76,13 @@ class Landing extends Component {
     );
   }
 }
+function mapStateToProps({ auth }) {
+  return {
+    auth
+  };
+}
 
 export default connect(
-  null,
+  mapStateToProps,
   actions
 )(Landing);
