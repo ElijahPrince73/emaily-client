@@ -1,15 +1,69 @@
+/* DEFAULTS */
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1200px;
+  padding-left: 16px;
+  padding-right: 16px;
+  width: 100%;
+}
+
+p {
+  font-size: 20px;
+}
+
+nav .brand-logo i.material-icons {
+  margin: 0;
+  float: none;
+  font-size: 40px;
+}
+
+nav ul li {
+  float: none;
+}
+
+/* END DEFAULT */
+
+/* NAV */
+
+nav {
+  box-shadow: none;
+  line-height: 5px;
+  background-color: #031b4d !important;
+  padding-bottom: 8%;
+}
+
+.navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  align-content: center;
+  padding: 0% 5%;
+}
+
+.nav-name {
+  margin-top: 1%;
+  font-size: 25px;
+}
+.nav-items-container {
+  width: 30%;
+}
+.nav-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+/* END NAV */
 .form-container {
   margin-top: 3%;
   border-radius: 5px;
   padding: 5% !important;
 }
 
-.background {
-  background-color: #0d47a1 !important;
-}
-
 .box {
-  background-color: #1565c0 !important;
+  background-color: #1633ff !important;
   padding: 2% !important;
 }
 .box-right {
@@ -21,7 +75,7 @@
 }
 
 .active-tab {
-  background-color: #1e88e5 !important;
+  background-color: white !important;
 }
 
 .surveys-page {
@@ -34,6 +88,10 @@
 
 .push-top {
   margin-top: 5% !important;
+}
+
+.push-top-sm {
+  margin-top: 2% !important;
 }
 
 .preloader-background {
@@ -55,7 +113,7 @@
 }
 
 nav .brand-logo {
-  left: 1%;
+  left: 5%;
 }
 
 .hidden {

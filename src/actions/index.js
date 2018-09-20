@@ -4,7 +4,8 @@ import {
   FETCH_SURVEYS,
   FETCH_SURVEY,
   POST_USER,
-  ERROR
+  ERROR,
+  REQUESTING
 } from "./types";
 const header = localStorage.getItem("header");
 
@@ -19,11 +20,14 @@ export const fetchUser = () => async dispatch => {
 
 // Gets surveys
 export const fetchSurveys = () => async dispatch => {
-  const res = await axios.get(process.env.REACT_APP_SURVEYS, {
-    headers: { "x-auth": header }
-  });
-
-  dispatch({ type: FETCH_SURVEYS, payload: res.data });
+  dispatch({ type: REQUESTING });
+  const res = await axios
+    .get(process.env.REACT_APP_SURVEYS, {
+      headers: { "x-auth": header }
+    })
+    .then(res => {
+      dispatch({ type: FETCH_SURVEYS, payload: res.data });
+    });
 };
 
 // Gets a single survey

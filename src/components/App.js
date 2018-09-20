@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Route } from "react-router-dom";
 import { Helmet } from "react-helmet";
 
 import Navigation from "./Navigation";
@@ -26,7 +26,14 @@ const LoginRegisterLayout = props => (
     <Helmet>
       <style type="text/css">{`
           body {
-              background-color: #0D47A1 !important;
+                background: linear-gradient(#0069ff,#1633ff);
+                background-repeat: no-repeat;
+                background-size: cover;
+                background-position: center;
+                height: 100vh;
+          }
+          nav {
+            background-color: transparent !important;
           }
       `}</style>
     </Helmet>

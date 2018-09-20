@@ -16,6 +16,13 @@ class SurveyList extends Component {
   renderSurveys() {
     const { surveys } = this.props;
 
+    if (surveys.length === 0) {
+      return (
+        <h4 className="center">
+          No Surveys Found Please Add Credits and Create a Survey
+        </h4>
+      );
+    }
     return (
       <div>
         {surveys.map(survey => {
@@ -47,9 +54,10 @@ class SurveyList extends Component {
 
   render() {
     const { surveys } = this.props;
+
     return (
       <div>
-        {surveys.length === 0 ? (
+        {surveys.isFetching ? (
           <Loader />
         ) : (
           <div className="surveys-page container">{this.renderSurveys()}</div>

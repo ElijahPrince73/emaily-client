@@ -10,19 +10,22 @@ class Header extends Component {
     logoutUser();
   }
 
+  componentDidMount() {
+    const { fetchUser } = this.props;
+    fetchUser();
+  }
+
   renderContent() {
     if (this.props.auth) {
       return (
-        <div>
-          <li>
+        <div className="nav-items">
+          <div>
             <Payments />
-          </li>
-          <li style={{ margin: "0 10px" }}>
-            Credits: {this.props.auth.credits}
-          </li>
-          <li>
+          </div>
+          <div>Credits: {this.props.auth.credits}</div>
+          <div>
             <a onClick={this.handleLogout.bind(this)}>Logout</a>
-          </li>
+          </div>
         </div>
       );
     }
@@ -31,14 +34,12 @@ class Header extends Component {
   render() {
     return (
       <nav>
-        <div className="nav-wrapper blue darken-4">
-          <Link
-            to={this.props.auth ? "/surveys" : "/"}
-            className="left brand-logo"
-          >
-            Emaily
+        <div className="nav-background navigation">
+          <Link to={this.props.auth ? "/surveys" : "/"}>
+            <i className="material-icons center">mail_outline</i>
+            <p className="nav-name">Emaily</p>
           </Link>
-          <ul className="right">{this.renderContent()}</ul>
+          <div className="nav-items-container">{this.renderContent()}</div>
         </div>
       </nav>
     );

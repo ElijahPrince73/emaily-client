@@ -48,17 +48,21 @@ class Landing extends Component {
   }
 
   render() {
-    console.log(this.props);
     return (
-      <div className="row blue darken-4 landing padding-bottom">
+      <div className="row push-top-sm">
         <div className="container">
           <div className="col m6 ">
-            <h3 className="white-text">Collect feedback from your users</h3>
+            <h3 className="white-text">
+              The simplest survey
+              <br />
+              platform for
+              <br />
+              developers & teams
+            </h3>
             <p className="white-text">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled
+              Send, manage, and scale your surveys faster and more efficiently
+              on Emaily. We make managing your surveys easy for businesses,
+              whether you’re running one survey or ten thousand.
             </p>
           </div>
           <div className="col m6 s12">

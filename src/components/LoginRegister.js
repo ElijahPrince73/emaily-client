@@ -39,8 +39,8 @@ class LoginRegister extends Component {
           <div
             className={
               this.state.activeTab
-                ? "col s6 login center-align box-left box active-tab white-text"
-                : "col s6 login center-align box-left box"
+                ? "col s6 login center-align box-left box active-tab"
+                : "col s6 login center-align box-left box white-text"
             }
             onClick={this.showFormLogin.bind(this)}
           >
@@ -49,8 +49,8 @@ class LoginRegister extends Component {
           <div
             className={
               !this.state.activeTab
-                ? "col s6 login center-align box-right box active-tab white-text"
-                : "col s6 login center-align box-right box"
+                ? "col s6 login center-align box-right box active-tab"
+                : "col s6 login center-align box-right box white-text"
             }
             onClick={this.showFormRegister.bind(this)}
           >
