@@ -7,7 +7,7 @@ export default function(state = null, action) {
     case POST_USER:
       return action.payload;
     case ERROR:
-      return action.payload;
+      return action.payload || { error: true };
     default:
       return state;
   }

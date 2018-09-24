@@ -21,12 +21,15 @@ export const fetchUser = () => async dispatch => {
 // Gets surveys
 export const fetchSurveys = () => async dispatch => {
   dispatch({ type: REQUESTING });
-  const res = await axios
+  await axios
     .get(process.env.REACT_APP_SURVEYS, {
       headers: { "x-auth": header }
     })
     .then(res => {
       dispatch({ type: FETCH_SURVEYS, payload: res.data });
+    })
+    .catch(err => {
+      dispatch({ type: ERROR });
     });
 };
 
@@ -49,15 +52,18 @@ export const submitSurvey = (values, history) => async dispatch => {
 };
 
 export const loginUser = values => async dispatch => {
-  const res = await axios.post(process.env.REACT_APP_LOGIN_USER, values);
-
-  if (res.data.tokens[0].token) {
-    dispatch({ type: POST_USER, payload: res.data });
-    localStorage.setItem("header", res.data.tokens[0].token);
-    window.location.href = "/surveys";
-  } else {
-    dispatch({ type: ERROR, payload: "Invalid Request" });
-  }
+  await axios
+    .post(process.env.REACT_APP_LOGIN_USER, values)
+    .then(res => {
+      if (res.data.tokens[0].token) {
+        dispatch({ type: POST_USER, payload: res.data });
+        localStorage.setItem("header", res.data.tokens[0].token);
+        window.location.href = "/surveys";
+      }
+    })
+    .catch(err => {
+      dispatch({ type: ERROR, payload: err.response.data.errorMessage });
+    });
 };
 
 export const logoutUser = values => async dispatch => {
@@ -72,12 +78,18 @@ export const logoutUser = values => async dispatch => {
 };
 
 export const registerUser = values => async dispatch => {
-  const res = await axios.post(process.env.REACT_APP_REGISTER_USER, values);
-  if (res.data.tokens[0].token) {
-    localStorage.setItem("header", res.data.tokens[0].token);
-    window.location.href = "/surveys";
-  }
-  dispatch({ type: POST_USER, payload: res.data });
+  await axios
+    .post(process.env.REACT_APP_REGISTER_USER, values)
+    .then(res => {
+      if (res.data.tokens[0].token) {
+        dispatch({ type: POST_USER, payload: res.data });
+        //localStorage.setItem("header", res.data.tokens[0].token);
+        //window.location.href = "/surveys";
+      }
+    })
+    .catch(err => {
+      dispatch({ type: ERROR, payload: err.response.data.errorMessage });
+    });
 };
 
 export const handleToken = token => async dispatch => {

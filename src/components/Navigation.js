@@ -35,8 +35,11 @@ class Header extends Component {
     return (
       <nav>
         <div className="nav-background navigation">
-          <Link to={this.props.auth ? "/surveys" : "/"}>
-            <i className="material-icons center">mail_outline</i>
+          <Link
+            to={this.props.auth ? "/surveys" : "/"}
+            className="nav-logo center"
+          >
+            <i className="material-icons">mail_outline</i>
             <p className="nav-name">Emaily</p>
           </Link>
           <div className="nav-items-container">{this.renderContent()}</div>

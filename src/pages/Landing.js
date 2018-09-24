@@ -4,50 +4,21 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 
 class Landing extends Component {
-  state = {
-    loading: false,
-    hidden: false,
-    isError: false,
-    errorMessage: ""
-  };
-
   handleLogin(values) {
-    const { loginUser, auth } = this.props;
+    const { loginUser } = this.props;
 
     loginUser(values);
-
-    if (auth === "Invalid Request" || auth === null || auth === "") {
-      this.setState({
-        isError: true,
-        errorMessage: "Invalid Request"
-      });
-    } else {
-      this.setState({
-        loading: true,
-        hidden: true
-      });
-    }
   }
 
   handleRegister(values) {
-    const { registerUser, auth } = this.props;
+    const { registerUser } = this.props;
 
     registerUser(values);
-
-    if (auth === "Invalid Request" || auth === null || auth === "") {
-      this.setState({
-        isError: true,
-        errorMessage: "Invalid Request"
-      });
-    } else {
-      this.setState({
-        loading: true,
-        hidden: true
-      });
-    }
   }
 
   render() {
+    const { auth } = this.props;
+
     return (
       <div className="row push-top-sm">
         <div className="container">
@@ -69,10 +40,7 @@ class Landing extends Component {
             <LoginRegister
               handleLogin={this.handleLogin.bind(this)}
               handleRegister={this.handleRegister.bind(this)}
-              loading={this.state.loading}
-              hidden={this.state.hidden}
-              isError={this.state.isError}
-              errorMessage={this.state.errorMessage}
+              errorMessage={auth}
             />
           </div>
         </div>

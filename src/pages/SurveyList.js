@@ -15,13 +15,16 @@ class SurveyList extends Component {
 
   renderSurveys() {
     const { surveys } = this.props;
-
+    console.log(surveys);
     if (surveys.length === 0) {
       return (
         <h4 className="center">
           No Surveys Found Please Add Credits and Create a Survey
         </h4>
       );
+    }
+    if (surveys.error) {
+      return <h4 className="center">An Error has occured</h4>;
     }
     return (
       <div>
@@ -54,7 +57,6 @@ class SurveyList extends Component {
 
   render() {
     const { surveys } = this.props;
-
     return (
       <div>
         {surveys.isFetching ? (
