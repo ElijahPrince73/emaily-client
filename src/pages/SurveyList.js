@@ -15,7 +15,7 @@ class SurveyList extends Component {
 
   renderSurveys() {
     const { surveys } = this.props;
-    console.log(surveys);
+
     if (surveys.length === 0) {
       return (
         <h4 className="center">

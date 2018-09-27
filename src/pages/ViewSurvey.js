@@ -9,6 +9,11 @@ class ViewSurvey extends Component {
     this.props.fetchSingleSurvey(surveyId);
   }
 
+  deleteSurvey(surveyId) {
+    const { deleteSurvey } = this.props;
+    deleteSurvey(surveyId);
+  }
+
   render() {
     const { survey } = this.props;
 
@@ -34,6 +39,12 @@ class ViewSurvey extends Component {
                 );
               })}
             </ul>
+            <button
+              onClick={() => this.deleteSurvey(survey._id)}
+              className="btn red darken-2"
+            >
+              Delete Survey
+            </button>
           </div>
         )}
       </div>

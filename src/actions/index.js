@@ -4,6 +4,7 @@ import {
   FETCH_SURVEYS,
   FETCH_SURVEY,
   POST_USER,
+  DELETE,
   ERROR,
   REQUESTING
 } from "./types";
@@ -51,6 +52,19 @@ export const submitSurvey = (values, history) => async dispatch => {
   dispatch({ type: FETCH_USER, payload: res.data });
 };
 
+export const deleteSurvey = value => async dispatch => {
+  const res = await axios
+    .delete(`${process.env.REACT_APP_SURVEYS}/${value}`, {
+      headers: { "x-auth": header }
+    })
+    .then(res => {
+      window.location.href = "/surveys";
+    })
+    .catch(err => {
+      dispatch({ type: ERROR, payload: err.response.data.errorMessage });
+    });
+};
+
 export const loginUser = values => async dispatch => {
   await axios
     .post(process.env.REACT_APP_LOGIN_USER, values)
@@ -83,8 +97,8 @@ export const registerUser = values => async dispatch => {
     .then(res => {
       if (res.data.tokens[0].token) {
         dispatch({ type: POST_USER, payload: res.data });
-        //localStorage.setItem("header", res.data.tokens[0].token);
-        //window.location.href = "/surveys";
+        localStorage.setItem("header", res.data.tokens[0].token);
+        window.location.href = "/surveys";
       }
     })
     .catch(err => {
