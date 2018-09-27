@@ -14,6 +14,10 @@ p {
   margin: 0;
 }
 
+img {
+  width: 100%;
+}
+
 /* END DEFAULT */
 
 .form-container {
@@ -50,12 +54,16 @@ p {
   margin-top: 5% !important;
 }
 
+.push-top-sm {
+  margin-top: 2% !important;
+}
+
 .push-bottom {
   margin-bottom: 5% !important;
 }
 
-.push-top-sm {
-  margin-top: 2% !important;
+.push-bottom-xs {
+  margin-bottom: 2% !important;
 }
 
 .preloader-background {
@@ -91,6 +99,15 @@ nav .brand-logo {
   font-size: 20px;
 }
 
+.btn-blue {
+  background-color: #22408f !important;
+}
+
+.btn-blue i {
+  font-size: 25px;
+  margin: 0;
+}
+
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
   /* NAV */
@@ -98,25 +115,27 @@ nav .brand-logo {
   nav {
     box-shadow: none;
     line-height: 5px;
-    background-color: #031b4d !important;
-    padding-bottom: 20%;
+    background-color: #22408f !important;
+    padding-bottom: 85px;
   }
 
   .navigation {
     display: flex;
     align-items: center;
     width: 100%;
+    justify-content: space-between;
   }
+
   .nav-logo {
     margin-left: 3%;
   }
-  .nav-items-container {
-    width: 85%;
-    margin-top: 5%;
-    margin-left: 5%;
+
+  .nav-setter {
+    width: 100%;
   }
 
-  .nav-items {
+  .nav-items-container {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -128,32 +147,32 @@ nav .brand-logo {
 /* Extra Small Devices, Phones */
 @media only screen and (min-width: 480px) {
   nav {
-    padding-bottom: 15%;
+    padding-bottom: 75px;
   }
   .nav-logo {
-    margin-left: 3%;
-  }
-  .nav-items-container {
-    width: 100%;
-    margin: auto;
-    margin-top: 5%;
-    margin-left: 35%;
-  }
-
-  .nav-items {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
+    margin-top: 8px;
+  }
+
+  .nav-setter {
+    width: 55%;
+  }
+
+  .nav-items-container {
+    width: 100%;
+    margin-top: 2%;
+  }
+
+  .nav-name {
+    margin-left: 5px;
   }
 }
 
 /* Small Devices, Tablets */
 @media only screen and (min-width: 768px) {
   /* NAV */
-
-  nav {
-    padding-bottom: 11%;
-  }
 
   nav .brand-logo i.material-icons {
     margin: 0;
@@ -164,25 +183,19 @@ nav .brand-logo {
   nav ul li {
     float: none;
   }
-  .nav-logo {
-    margin: 0;
-  }
+
   .navigation {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     align-content: center;
     padding: 0% 5%;
   }
 
-  .nav-name {
-    margin-top: 1%;
-    font-size: 25px;
+  .nav-setter {
+    width: 45%;
   }
+
   .nav-items-container {
-    width: 50%;
-    margin: inherit;
-    margin-top: 3%;
+    width: 100%;
   }
 
   .nav-items {
@@ -194,13 +207,16 @@ nav .brand-logo {
   /* END NAV */
 }
 
-/* Medium Devices, Desktops */
 @media only screen and (min-width: 992px) {
-  nav {
-    padding-bottom: 9%;
-  }
-}
+  /* NAV */
 
-/* Large Devices, Wide Screens */
-@media only screen and (min-width: 1200px) {
+  .nav-setter {
+    width: 35%;
+  }
+
+  .nav-items-container {
+    width: 100%;
+  }
+
+  /* END NAV */
 }

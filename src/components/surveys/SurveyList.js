@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { fetchSurveys } from "../actions";
 import { Link } from "react-router-dom";
-import Loader from "../components/Loader";
+import Loader from "../Loader";
+import { fetchSurveys } from "../../actions";
 
 class SurveyList extends Component {
   state = {
@@ -18,9 +18,18 @@ class SurveyList extends Component {
 
     if (surveys.length === 0) {
       return (
-        <h4 className="center">
-          No Surveys Found Please Add Credits and Create a Survey
-        </h4>
+        <div className="row container push-top">
+          <div className="col m6">
+            <h4>Create beautiful email campaigns with ease.</h4>
+            <p>
+              Emaily helps grow teams send beautiful, optimized emails quickly
+              and easily.
+            </p>
+          </div>
+          <div className="col m6">
+            <img src="/mail.png" />
+          </div>
+        </div>
       );
     }
     if (surveys.error) {
@@ -31,7 +40,7 @@ class SurveyList extends Component {
         {surveys.map(survey => {
           return (
             <Link to={`/view-survey/${survey._id}`} key={survey._id}>
-              <div className="card grey lighten-2">
+              <div className="card grey lighten-2 hoverable">
                 <div className="card-content">
                   <span className="card-title">{survey.title}</span>
                   <p>{survey.body}</p>

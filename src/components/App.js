@@ -21,33 +21,47 @@ const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
   />
 );
 
-const LoginRegisterLayout = props => (
-  <div>
-    <Helmet>
-      <style type="text/css">{`
-          body {
-                background: linear-gradient(#0069ff,#1633ff);
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: center;
-                height: 100vh;
-          }
-          nav {
-            background-color: transparent !important;
-          }
-      `}</style>
-    </Helmet>
-    <Navigation />
-    {props.children}
-  </div>
-);
+const LoginRegisterLayout = props => {
+  const header = localStorage.getItem("header");
+  if (header) {
+    window.location.href = "/surveys";
+  }
 
-const MainLayout = props => (
-  <div>
-    <Navigation />
-    {props.children}
-  </div>
-);
+  return (
+    <div>
+      <Helmet>
+        <style type="text/css">{`
+            body {
+                  background: linear-gradient(#0069ff,#1633ff);
+                  background-repeat: no-repeat;
+                  background-size: cover;
+                  background-position: center;
+                  height: 100vh;
+            }
+            nav {
+              background-color: transparent !important;
+            }
+        `}</style>
+      </Helmet>
+      <Navigation />
+      {props.children}
+    </div>
+  );
+};
+const MainLayout = props => {
+  const header = localStorage.getItem("header");
+  if (!header) {
+    window.location.href = "/";
+  }
+
+  return (
+    <div>
+      <Navigation />
+      {props.children}
+    </div>
+  );
+};
+
 const App = () => {
   return (
     <div>

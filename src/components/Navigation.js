@@ -18,7 +18,7 @@ class Header extends Component {
   renderContent() {
     if (this.props.auth) {
       return (
-        <div className="nav-items">
+        <div className="nav-items-container">
           <div>
             <Payments />
           </div>
@@ -32,6 +32,7 @@ class Header extends Component {
   }
 
   render() {
+    console.log(this.props.auth);
     return (
       <nav>
         <div className="nav-background navigation">
@@ -42,7 +43,7 @@ class Header extends Component {
             <i className="material-icons">mail_outline</i>
             <p className="nav-name">Emaily</p>
           </Link>
-          <div className="nav-items-container">{this.renderContent()}</div>
+          <div className="nav-setter">{this.renderContent()}</div>
         </div>
       </nav>
     );
