@@ -1,14 +1,10 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import Loader from "../Loader";
-import { fetchSurveys } from "../../actions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Loader from '../Loader';
+import { fetchSurveys } from '../../actions';
 
 class SurveyList extends Component {
-  state = {
-    loading: true
-  };
-
   componentDidMount() {
     this.props.fetchSurveys();
   }
@@ -27,7 +23,7 @@ class SurveyList extends Component {
             </p>
           </div>
           <div className="col m6">
-            <img src="/mail.png" />
+            <img src="/mail.png" alt="img" />
           </div>
         </div>
       );
@@ -37,29 +33,33 @@ class SurveyList extends Component {
     }
     return (
       <div>
-        {surveys.map(survey => {
-          return (
-            <Link to={`/view-survey/${survey._id}`} key={survey._id}>
-              <div className="card grey lighten-2 hoverable">
-                <div className="card-content">
-                  <span className="card-title">{survey.title}</span>
-                  <p>{survey.body}</p>
-                  <p className="right">
-                    Sent On: {new Date(survey.dateSent).toLocaleDateString()}
-                  </p>
-                </div>
-                <div className="card-action">
-                  <span className="light-green-text darken-4">
-                    Yes: {survey.yes}
-                  </span>
-                  <span className="light-green-text darken-4">
-                    No: {survey.no}
-                  </span>
-                </div>
+        {surveys.map(survey => (
+          <Link to={`/view-survey/${survey._id}`} key={survey._id}>
+            <div className="card grey lighten-2 hoverable">
+              <div className="card-content">
+                <span className="card-title">{survey.title}</span>
+                <p>{survey.body}</p>
+                <p className="right">
+                  Sent On:
+                  {' '}
+                  {new Date(survey.dateSent).toLocaleDateString()}
+                </p>
               </div>
-            </Link>
-          );
-        })}
+              <div className="card-action">
+                <span className="light-green-text darken-4">
+                  Yes:
+                  {' '}
+                  {survey.yes}
+                </span>
+                <span className="light-green-text darken-4">
+                  No:
+                  {' '}
+                  {survey.no}
+                </span>
+              </div>
+            </div>
+          </Link>
+        ))}
       </div>
     );
   }
@@ -83,5 +83,5 @@ function mapStateToProps({ surveys, auth }) {
 
 export default connect(
   mapStateToProps,
-  { fetchSurveys }
+  { fetchSurveys },
 )(SurveyList);

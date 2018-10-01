@@ -22,9 +22,15 @@ class SurveyForm extends Component {
     });
   }
   render() {
+    const {
+      onSurveySubmit,
+      handleDraft,
+      handleSubmit
+    } = this.props
+
     return (
       <div className="container push-top">
-        <form onSubmit={this.props.handleSubmit(this.props.onSurveySubmit)}>
+        <form onSubmit={onSurveySubmit}>
           {this.renderFields()}
           <Link to="/surveys" className="red btn-flat left white-text">
             Cancel
@@ -32,9 +38,24 @@ class SurveyForm extends Component {
           <button
             className="btn blue accent-3 btn-flat right white-text"
             type="submit"
+            onClick = {
+              handleSubmit(values => onSurveySubmit({
+                ...values
+              }))
+            }
           >
             Next
-            <i className="material-icons right">done</i>
+          </button>
+          <button
+            className="btn yellow accent-4 btn-flat right white-text push-right"
+            onClick = {
+                handleSubmit(values => this.props.handleDraft({
+              ...values,
+              isDraft: true
+            }))}
+            type='button'
+          >
+            Save as draft
           </button>
         </form>
       </div>
