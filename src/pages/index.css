@@ -108,6 +108,10 @@ nav .brand-logo {
   margin: 0;
 }
 
+.custom-card-size{
+  width: 60%;
+  margin: auto;
+}
 /* Custom, iPhone Retina */
 @media only screen and (min-width: 320px) {
   /* NAV */
