@@ -6,9 +6,34 @@ import * as actions from '../actions';
 import Loader from '../components/Loader';
 
 class ViewSurvey extends Component {
+  state = {
+    data: [{
+      value: null,
+      color: '#F7464A',
+      highlight: '#FF5A5E',
+      label: 'Responses No',
+    }, {
+      value: null,
+      color: '#46BFBD',
+      highlight: '#5AD3D1',
+      label: 'Responses Yes',
+    }],
+  }
+
   componentWillMount() {
     const surveyId = this.props.match.params;
     this.props.fetchSingleSurvey(surveyId);
+  }
+
+  componentDidMount() {
+    const { survey } = this.props;
+
+    const data = this.state.data;
+    data[0].value = survey.no;
+    data[1].value = survey.yes;
+    this.setState({
+      data,
+    });
   }
 
   deleteSurvey(surveyId) {
@@ -18,51 +43,41 @@ class ViewSurvey extends Component {
 
   renderContent() {
     const { survey } = this.props;
+    console.log(survey);
 
-    // Need to make this use actual data
-    const data = [
-      {
-        value: 10,
-        color: '#F7464A',
-        highlight: '#FF5A5E',
-        label: 'Responses No',
-      },
-      {
-        value: 20,
-        color: '#46BFBD',
-        highlight: '#5AD3D1',
-        label: 'Responses Yes',
-      },
-    ];
-
+    const date = new Date(survey.dateSent).toDateString();
     return (
       <div className="row container push-top">
-        <Link className="btn btn-blue push-bottom-xs" to="/surveys">
-          <i className="material-icons left">chevron_left</i>
-            Go Back
-        </Link>
+        <h4>{survey.title}</h4>
         <div className="card custom-card-size">
-          <div className="center">
-            <h4>Survey Responses</h4>
-            <Pie data={data} />
-          </div>
           <div className="card-content">
-            <ul className="with-header">
-              <li className="collection-header">
-                <h4>
-                  Title:
-                  {' '}
-                  {survey.title}
-                </h4>
+            <h5>
+              {survey.recipients.length}
+              {' '}
+              Recipients
+            </h5>
+            <div className="row">
+              <div className="col s6">
                 <p>
-                  Date Sent:
+                  Subject:
                   {' '}
-                  {survey.dateSent}
+                  {survey.subject}
                 </p>
-              </li>
-              <li className="collection-header">
-                <h5> Survey Recipients: </h5>
-              </li>
+              </div>
+              <div className="col s6">
+                <p>
+                  Delivered:
+                  {' '}
+                  {date}
+                </p>
+              </div>
+            </div>
+            <h5>Survey Responses</h5>
+            {this.state.data[0].value === 0 && this.state.data[0].value === 0
+              ? <p>No responses yet</p>
+              : <Pie data={this.state.data} />}
+            <h5>Survey Recipients</h5>
+            <ul className="collection">
               {survey.recipients.map(item => (
                 <li
                   className="collection-item"

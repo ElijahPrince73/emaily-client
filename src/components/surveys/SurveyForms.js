@@ -1,32 +1,31 @@
 // SurveyForm shows a form for a user to add input
-import _ from "lodash";
-import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
-import { Link } from "react-router-dom";
-import SurveyField from "./SurveyFields";
-import validateEmails from "../../utils/validateEmails";
-import formFields from "./formFields";
+import _ from 'lodash';
+import React, { Component } from 'react';
+import { reduxForm, Field } from 'redux-form';
+import { Link } from 'react-router-dom';
+import SurveyField from './SurveyFields';
+import validateEmails from '../../utils/validateEmails';
+import formFields from './formFields';
 
 class SurveyForm extends Component {
   renderFields() {
-    return _.map(formFields, ({ label, name }) => {
-      return (
-        <Field
-          key={name}
-          component={SurveyField}
-          type="text"
-          label={label}
-          name={name}
-        />
-      );
-    });
+    return _.map(formFields, ({ label, name }) => (
+      <Field
+        key={name}
+        component={SurveyField}
+        type="text"
+        label={label}
+        name={name}
+      />
+    ));
   }
+
   render() {
     const {
       onSurveySubmit,
       handleDraft,
-      handleSubmit
-    } = this.props
+      handleSubmit,
+    } = this.props;
 
     return (
       <div className="container push-top">
@@ -38,9 +37,9 @@ class SurveyForm extends Component {
           <button
             className="btn blue accent-3 btn-flat right white-text"
             type="submit"
-            onClick = {
+            onClick={
               handleSubmit(values => onSurveySubmit({
-                ...values
+                ...values,
               }))
             }
           >
@@ -48,12 +47,12 @@ class SurveyForm extends Component {
           </button>
           <button
             className="btn yellow accent-4 btn-flat right white-text push-right"
-            onClick = {
+            onClick={
                 handleSubmit(values => this.props.handleDraft({
-              ...values,
-              isDraft: true
-            }))}
-            type='button'
+                  ...values,
+                  isDraft: true,
+                }))}
+            type="button"
           >
             Save as draft
           </button>
@@ -65,10 +64,10 @@ class SurveyForm extends Component {
 
 function validate(values) {
   const errors = {};
-  errors.recipients = validateEmails(values.recipients || "");
+  errors.recipients = validateEmails(values.recipients || '');
   _.each(formFields, ({ name }) => {
     if (!values[name]) {
-      errors[name] = "You Must Provide a Value";
+      errors[name] = 'You Must Provide a Value';
     }
   });
   return errors;
@@ -76,6 +75,6 @@ function validate(values) {
 
 export default reduxForm({
   validate,
-  form: "surveyForm",
-  destroyOnUnmount: false
+  form: 'surveyForm',
+  destroyOnUnmount: false,
 })(SurveyForm);
