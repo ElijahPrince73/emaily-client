@@ -1,7 +1,7 @@
-import React, { Component } from "react";
-import LoginRegister from "../components/LoginRegister";
+import React, { Component } from 'react';
 import { connect } from "react-redux";
-import * as actions from "../actions";
+import LoginRegister from "../components/LoginRegister";
+import * as actions from '../actions';
 
 class Landing extends Component {
   handleLogin(values) {
@@ -50,11 +50,11 @@ class Landing extends Component {
 }
 function mapStateToProps({ auth }) {
   return {
-    auth
+    auth,
   };
 }
 
 export default connect(
   mapStateToProps,
-  actions
+  actions,
 )(Landing);

@@ -9,13 +9,14 @@ import formFields from './formFields';
 
 class SurveyForm extends Component {
   renderFields() {
-    return _.map(formFields, ({ label, name }) => (
+    return formFields.map(({ label, name }) => (
       <Field
         key={name}
         component={SurveyField}
         type="text"
         label={label}
         name={name}
+        data={this.props.data}
       />
     ));
   }

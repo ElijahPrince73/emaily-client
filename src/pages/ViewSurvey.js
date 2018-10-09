@@ -20,13 +20,11 @@ class ViewSurvey extends Component {
     }],
   }
 
-  componentWillMount() {
-    const surveyId = this.props.match.params;
-    this.props.fetchSingleSurvey(surveyId);
-  }
-
   componentDidMount() {
     const { survey } = this.props;
+    // Grabs survey Id off url and fetches the survey
+    const surveyId = this.props.match.params;
+    this.props.fetchSingleSurvey(surveyId);
 
     const data = this.state.data;
     data[0].value = survey.no;
@@ -43,7 +41,7 @@ class ViewSurvey extends Component {
 
   renderContent() {
     const { survey } = this.props;
-    console.log(survey);
+    const surveyId = this.props.match.params;
 
     const date = new Date(survey.dateSent).toDateString();
     return (
@@ -73,9 +71,10 @@ class ViewSurvey extends Component {
               </div>
             </div>
             <h5>Survey Responses</h5>
-            {this.state.data[0].value === 0 && this.state.data[0].value === 0
+            {this.state.data.length
               ? <p>No responses yet</p>
-              : <Pie data={this.state.data} />}
+              : <Pie data={this.state.data} />
+            }
             <h5>Survey Recipients</h5>
             <ul className="collection">
               {survey.recipients.map(item => (
@@ -96,6 +95,13 @@ class ViewSurvey extends Component {
             >
             Delete Survey
             </button>
+
+            <Link
+              className="btn blue accent-3 right"
+              to={`/surveys/new/${surveyId.id}`}
+            >
+              Continue
+            </Link>
           </div>
         </div>
       </div>

@@ -1,14 +1,14 @@
-import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import React from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import { Helmet } from 'react-helmet';
 
-import Navigation from "./Navigation";
-import Landing from "../pages/Landing";
-import Dashboard from "../pages/Dashboard";
-import SurveyNew from "../pages/SurveyNew";
-import ViewSurvey from "../pages/ViewSurvey";
-import ThankYou from "../pages/ThankYou";
-import "../pages/index.css";
+import Navigation from './Navigation';
+import Landing from '../pages/Landing';
+import Dashboard from '../pages/Dashboard';
+import SurveyNew from '../pages/SurveyNew';
+import ViewSurvey from '../pages/ViewSurvey';
+import ThankYou from '../pages/ThankYou';
+import '../pages/index.css';
 
 const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
   <Route
@@ -21,16 +21,17 @@ const AppRoute = ({ component: Component, layout: Layout, ...rest }) => (
   />
 );
 
-const LoginRegisterLayout = props => {
-  const header = localStorage.getItem("header");
+const LoginRegisterLayout = (props) => {
+  const header = localStorage.getItem('header');
   if (header) {
-    window.location.href = "/surveys";
+    window.location.href = '/surveys';
   }
 
   return (
     <div>
       <Helmet>
-        <style type="text/css">{`
+        <style type="text/css">
+          {`
             body {
                   background: linear-gradient(#0069ff,#1633ff);
                   background-repeat: no-repeat;
@@ -41,17 +42,19 @@ const LoginRegisterLayout = props => {
             nav {
               background-color: transparent !important;
             }
-        `}</style>
+        `}
+
+        </style>
       </Helmet>
       <Navigation />
       {props.children}
     </div>
   );
 };
-const MainLayout = props => {
-  const header = localStorage.getItem("header");
+const MainLayout = (props) => {
+  const header = localStorage.getItem('header');
   if (!header) {
-    window.location.href = "/";
+    window.location.href = '/';
   }
 
   return (
@@ -62,10 +65,9 @@ const MainLayout = props => {
   );
 };
 
-const App = () => {
-  return (
-    <div>
-      <BrowserRouter>
+const App = () => (
+  <div>
+    <BrowserRouter>
         <div>
           <AppRoute
             exact
@@ -87,6 +89,12 @@ const App = () => {
           />
           <AppRoute
             exact
+            path="/surveys/new/:id"
+            layout={MainLayout}
+            component={SurveyNew}
+          />
+          <AppRoute
+            exact
             path="/view-survey/:id"
             layout={MainLayout}
             component={ViewSurvey}
@@ -99,8 +107,7 @@ const App = () => {
           />
         </div>
       </BrowserRouter>
-    </div>
-  );
-};
+  </div>
+);
 
 export default App;
