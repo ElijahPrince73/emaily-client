@@ -1,30 +1,30 @@
-import React, { Component } from "react";
-import { Field, reduxForm } from "redux-form";
-import ErrorMessage from "../components/ErrorMessage";
+import React, { Component } from 'react';
+import { Field, reduxForm } from 'redux-form';
+import ErrorMessage from './ErrorMessage';
 
 class LoginRegister extends Component {
   state = {
-    hidden: true,
-    activeTab: true
+    activeTab: true,
   };
 
   showFormLogin() {
     this.setState({
-      activeTab: true
+      activeTab: true,
     });
   }
 
   showFormRegister() {
     this.setState({
-      activeTab: false
+      activeTab: false,
     });
   }
+
   render() {
     const {
       handleLogin,
       handleRegister,
       handleSubmit,
-      errorMessage
+      errorMessage,
     } = this.props;
 
     return (
@@ -34,8 +34,8 @@ class LoginRegister extends Component {
           <div
             className={
               this.state.activeTab
-                ? "col s6 login center-align box-left box active-tab"
-                : "col s6 login center-align box-left box white-text"
+                ? 'col s6 login center-align box-left box active-tab'
+                : 'col s6 login center-align box-left box white-text'
             }
             onClick={this.showFormLogin.bind(this)}
           >
@@ -44,8 +44,8 @@ class LoginRegister extends Component {
           <div
             className={
               !this.state.activeTab
-                ? "col s6 login center-align box-right box active-tab"
-                : "col s6 login center-align box-right box white-text"
+                ? 'col s6 login center-align box-right box active-tab'
+                : 'col s6 login center-align box-right box white-text'
             }
             onClick={this.showFormRegister.bind(this)}
           >
@@ -88,10 +88,10 @@ class LoginRegister extends Component {
             >
               Submit
             </button>
-            {typeof errorMessage === "string" ||
-            errorMessage instanceof String ? (
+            {typeof errorMessage === 'string'
+            || errorMessage instanceof String ? (
               <ErrorMessage errorMessage={errorMessage} />
-            ) : null}
+              ) : null}
           </form>
         ) : (
           <form
@@ -138,10 +138,10 @@ class LoginRegister extends Component {
             >
               Submit
             </button>
-            {typeof errorMessage === "string" ||
-            errorMessage instanceof String ? (
+            {typeof errorMessage === 'string'
+            || errorMessage instanceof String ? (
               <ErrorMessage errorMessage={errorMessage} />
-            ) : null}
+              ) : null}
           </form>
         )}
       </div>
@@ -149,5 +149,5 @@ class LoginRegister extends Component {
   }
 }
 export default reduxForm({
-  form: "loginRegister"
+  form: 'loginRegister',
 })(LoginRegister);

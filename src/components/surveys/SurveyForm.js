@@ -2,23 +2,66 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import SurveyField from './SurveyFields';
 import validateEmails from '../../utils/validateEmails';
-import formFields from './formFields';
+import * as actions from '../../actions';
 
 class SurveyForm extends Component {
+  componentDidMount() {
+    // Grabs survey Id off url and fetches the survey
+    const { surveyId } = this.props;
+    this.props.fetchSingleSurvey(surveyId);
+
+    this.handleInitialValues();
+  }
+
+  handleInitialValues() {
+    const { survey } = this.props;
+
+    if (survey) {
+      const initData = {
+        title: survey.title,
+        subject: survey.subject,
+        body: survey.body,
+        recipients: survey.recipients.map(({ email }) => email),
+      };
+
+      this.props.initialize(initData);
+    }
+  }
+
   renderFields() {
-    return formFields.map(({ label, name }) => (
-      <Field
-        key={name}
-        component={SurveyField}
-        type="text"
-        label={label}
-        name={name}
-        data={this.props.data}
-      />
-    ));
+    return (
+      <div>
+        <label>Survey Title</label>
+        <Field
+          component="input"
+          type="text"
+          name="title"
+        />
+        <label>Subject Line</label>
+        <Field
+          component="input"
+          type="text"
+          name="subject"
+        />
+        <label>Email Body</label>
+        <Field
+          component="input"
+          type="text"
+          label="Email Body"
+          name="body"
+        />
+        <label>Recipient List</label>
+        <Field
+          component="input"
+          type="text"
+          label="Recipient List"
+          name="recipients"
+        />
+      </div>
+    );
   }
 
   render() {
@@ -27,7 +70,7 @@ class SurveyForm extends Component {
       handleDraft,
       handleSubmit,
     } = this.props;
-
+    console.log(this.props);
     return (
       <div className="container push-top">
         <form onSubmit={onSurveySubmit}>
@@ -63,19 +106,14 @@ class SurveyForm extends Component {
   }
 }
 
-function validate(values) {
-  const errors = {};
-  errors.recipients = validateEmails(values.recipients || '');
-  _.each(formFields, ({ name }) => {
-    if (!values[name]) {
-      errors[name] = 'You Must Provide a Value';
-    }
-  });
-  return errors;
+function mapStateToProps({ survey }) {
+  return {
+    survey,
+  };
 }
 
+
 export default reduxForm({
-  validate,
   form: 'surveyForm',
   destroyOnUnmount: false,
-})(SurveyForm);
+})(connect(mapStateToProps, actions)(SurveyForm));

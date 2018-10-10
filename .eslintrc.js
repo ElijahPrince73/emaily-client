@@ -9,6 +9,8 @@ module.exports = {
         "no-underscore-dangle": "off",
         "prefer-destructuring": "off",
         "react/no-access-state-in-setstate": "off",
-        "class-methods-use-this": "off"
+        "class-methods-use-this": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off"
     }
 };
