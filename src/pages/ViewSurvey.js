@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Pie } from 'react-chartjs';
+import Loader from  '../components/Loader'
 import * as actions from '../actions';
-import Loader from '../components/Loader';
 
 class ViewSurvey extends Component {
   state = {
@@ -110,7 +110,9 @@ class ViewSurvey extends Component {
 
   render() {
     const { survey } = this.props;
-
+    if (survey.loading) {
+      return <Loader />
+    }
     return <div>{survey.length === 0 ? <Loader /> : this.renderContent()}</div>;
   }
 }

@@ -1,18 +1,15 @@
 // SurveyForm shows a form for a user to add input
-import _ from 'lodash';
 import React, { Component } from 'react';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import validateEmails from '../../utils/validateEmails';
 import * as actions from '../../actions';
+import Loader from '../Loader';
 
 class SurveyForm extends Component {
   componentDidMount() {
-    // Grabs survey Id off url and fetches the survey
     const { surveyId } = this.props;
     this.props.fetchSingleSurvey(surveyId);
-
     this.handleInitialValues();
   }
 
@@ -69,8 +66,13 @@ class SurveyForm extends Component {
       onSurveySubmit,
       handleDraft,
       handleSubmit,
+      survey,
     } = this.props;
-    console.log(this.props);
+
+    if (survey.loading) {
+      return <Loader />
+    }
+  
     return (
       <div className="container push-top">
         <form onSubmit={onSurveySubmit}>
@@ -106,14 +108,21 @@ class SurveyForm extends Component {
   }
 }
 
-function mapStateToProps({ survey }) {
+function mapStateToProps(state) {
   return {
-    survey,
+    survey: state.survey,
   };
 }
 
-
-export default reduxForm({
+SurveyForm = reduxForm({
   form: 'surveyForm',
   destroyOnUnmount: false,
-})(connect(mapStateToProps, actions)(SurveyForm));
+  enableReinitialize: true,
+})(SurveyForm);
+
+SurveyForm = connect(
+  mapStateToProps,
+  actions,
+)(SurveyForm);
+
+export default SurveyForm;

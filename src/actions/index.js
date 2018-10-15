@@ -36,11 +36,14 @@ export const fetchSurveys = () => async (dispatch) => {
 
 // Gets a single survey
 export const fetchSingleSurvey = value => async (dispatch) => {
-  const res = await axios.get(`${process.env.REACT_APP_SURVEYS}/${value.id}`, {
+  dispatch({ type: REQUESTING });
+  await axios.get(`${process.env.REACT_APP_SURVEYS}/${value.id}`, {
     headers: { 'x-auth': header },
+  }).then((res) => {
+    dispatch({ type: FETCH_SURVEY, payload: res.data });
+  }).catch(() => {
+    dispatch({ type: ERROR });
   });
-
-  dispatch({ type: FETCH_SURVEY, payload: res.data });
 };
 
 // POST survey used in SurveyFormReview
