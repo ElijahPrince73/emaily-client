@@ -5,7 +5,8 @@ import { Helmet } from 'react-helmet';
 import Navigation from './Navigation';
 import Landing from '../pages/Landing';
 import Dashboard from '../pages/Dashboard';
-import SurveyNew from '../pages/SurveyNew';
+import SurveyCreate from '../pages/SurveyCreate'
+import SurveyDraft from '../pages/SurveyDraft';
 import ViewSurvey from '../pages/ViewSurvey';
 import ThankYou from '../pages/ThankYou';
 import '../pages/index.css';
@@ -83,15 +84,21 @@ const App = () => (
           />
           <AppRoute
             exact
-            path="/surveys/new"
+            path="/create-survey"
             layout={MainLayout}
-            component={SurveyNew}
+            component={SurveyCreate}
           />
           <AppRoute
             exact
-            path="/surveys/new/:id"
+            path="/draft"
             layout={MainLayout}
-            component={SurveyNew}
+            component={SurveyDraft}
+          />
+          <AppRoute
+            exact
+            path="/draft/:id"
+            layout={MainLayout}
+            component={SurveyDraft}
           />
           <AppRoute
             exact

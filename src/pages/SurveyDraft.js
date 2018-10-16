@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
-import SurveyForm from '../components/surveys/SurveyForm';
+import SurveyForm from '../components/surveys/SurveyDraft';
 import SurveyFormReview from '../components/surveys/SurveyFormReview';
 
 class SurveyNew extends Component {

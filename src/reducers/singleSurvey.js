@@ -8,7 +8,10 @@ export default function(state = [], action) {
         loading: true,
       };
     case FETCH_SURVEY:
-      return action.payload;
+      return {
+        loading: false,
+        ...action.payload,
+      }
     default:
       return state;
   }

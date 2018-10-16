@@ -98,7 +98,7 @@ class ViewSurvey extends Component {
 
             <Link
               className="btn blue accent-3 right"
-              to={`/surveys/new/${surveyId.id}`}
+              to={`/draft/${surveyId.id}`}
             >
               Continue
             </Link>

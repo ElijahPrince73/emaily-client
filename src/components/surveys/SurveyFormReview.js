@@ -6,7 +6,15 @@ import * as actions from '../../actions';
 
 class SurveyFormReview extends Component {
   renderValues() {
-    const { formValues } = this.props
+    let { formValues } = this.props
+    let recipients;
+
+    if (Array.isArray(formValues.recipients)) {
+      recipients = formValues.recipients.join(', ');
+    } else {
+      recipients = formValues.recipients.split(',').join(', ');
+    }
+
     return (
       <div>
         <h5>Title</h5>
@@ -16,7 +24,7 @@ class SurveyFormReview extends Component {
         <h5>Body</h5>
         <p>{formValues.body}</p>
         <h5>Recipients</h5>
-        <p>{formValues.recipients.map(({ email }) => email)}</p>
+        <p>{recipients}</p>
       </div>
     );
   }
@@ -54,16 +62,15 @@ class SurveyFormReview extends Component {
   }
 }
 function mapStateToProps(state) {
-  // gives all of our the values a user entered in
-  // and puts them in the formValues object
+  if (state.form.surveyForm) {
+    return {
+      formValues: state.form.surveyForm.values,
+    };
+  }
   return {
-    formValues: state.form.surveyForm.values,
+    formValues: state.form.surveyCreate.values,
   };
 }
-// Making redux connect to our redux state and allowing it to use actions
-// then connect it the component
-
-// Adding withRouter function to gain access to the history object and redirect after send
 export default connect(
   mapStateToProps,
   actions,
