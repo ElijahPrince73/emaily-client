@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Pie } from 'react-chartjs';
-import Loader from  '../components/Loader'
+import Loader from '../components/Loader';
 import * as actions from '../actions';
 
 class ViewSurvey extends Component {
@@ -111,7 +111,7 @@ class ViewSurvey extends Component {
   render() {
     const { survey } = this.props;
     if (survey.loading) {
-      return <Loader />
+      return <Loader />;
     }
     return <div>{survey.length === 0 ? <Loader /> : this.renderContent()}</div>;
   }

@@ -48,21 +48,23 @@ export const fetchSingleSurvey = value => async (dispatch) => {
 
 // POST survey used in SurveyFormReview
 export const submitSurvey = (values, history) => async (dispatch) => {
-  const res = await axios.post(process.env.REACT_APP_SURVEYS, values, {
+  await axios.post(process.env.REACT_APP_SURVEYS, values, {
     headers: { 'x-auth': header },
-  });
-  history.push('/surveys');
+  }).then((res) => {
+    // history.push('/surveys');
 
-  dispatch({ type: FETCH_USER, payload: res.data });
+    // dispatch({ type: FETCH_USER, payload: res.data });
+  });
 };
 
 // POST survey draft
 export const submitSurveyDraft = values => async (dispatch) => {
-  const res = await axios.post(process.env.REACT_APP_HANDLE_SURVEY_DRAFT, values, {
+  await axios.post(process.env.REACT_APP_HANDLE_SURVEY_DRAFT, values, {
     headers: { 'x-auth': header },
+  }).then((res) => {
+    dispatch({ type: FETCH_USER, payload: res.data });
+    window.location.href = '/surveys';
   });
-
-  dispatch({ type: FETCH_USER, payload: res.data });
 };
 
 // Delete Survey

@@ -70,9 +70,9 @@ class SurveyForm extends Component {
     } = this.props;
 
     if (survey.loading) {
-      return <Loader />
+      return <Loader />;
     }
-  
+
     return (
       <div className="container push-top">
         <form onSubmit={onSurveySubmit}>

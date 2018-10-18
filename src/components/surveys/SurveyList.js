@@ -11,7 +11,7 @@ class SurveyList extends Component {
 
   renderSurveys() {
     const { surveys } = this.props;
-
+    console.log(surveys);
     if (surveys.length === 0) {
       return (
         <div className="row container push-top">
@@ -36,6 +36,14 @@ class SurveyList extends Component {
         {surveys.map(survey => (
           <Link to={`/view-survey/${survey._id}`} key={survey._id}>
             <div className="card grey lighten-2 hoverable">
+              {survey.isDraft
+                ? (
+                  <div className="draft">
+                    Draft
+                  </div>
+                )
+                : null
+            }
               <div className="card-content">
                 <span className="card-title">{survey.title}</span>
                 <p>{survey.body}</p>

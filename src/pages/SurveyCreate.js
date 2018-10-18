@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { reduxForm } from 'redux-form';
+import { connect } from 'react-redux';
 import SurveyCreate from '../components/surveys/SurveyCreate';
 import SurveyFormReview from '../components/surveys/SurveyFormReview';
+import * as actions from '../actions';
 
 class SurveyCreatePage extends Component {
     state = {
@@ -32,6 +34,10 @@ class SurveyCreatePage extends Component {
       return <div>{this.renderContent()}</div>;
     }
 }
+
+SurveyCreatePage = connect(
+  null, actions,
+)(SurveyCreatePage);
 
 export default reduxForm({
   form: 'surveyCreate',

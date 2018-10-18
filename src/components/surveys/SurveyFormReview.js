@@ -5,8 +5,32 @@ import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
 
 class SurveyFormReview extends Component {
+  submitSurvey() {
+    const {
+      isDraft,
+      formValues,
+      submitSurvey,
+      history,
+    } = this.props;
+
+    if (!Array.isArray(formValues.recipients)) {
+      formValues.recipients = [formValues.recipients];
+    }
+
+    const surveyId = this.props.match.params.id;
+
+    if (isDraft) {
+      formValues.isDraft = true;
+      formValues.id = surveyId;
+
+      submitSurvey(formValues, history);
+    }
+
+    submitSurvey(formValues, history);
+  }
+
   renderValues() {
-    let { formValues } = this.props
+    const { formValues } = this.props;
     let recipients;
 
     if (Array.isArray(formValues.recipients)) {
@@ -32,11 +56,8 @@ class SurveyFormReview extends Component {
   render() {
     const {
       onCancel,
-      formValues,
-      submitSurvey,
-      history,
     } = this.props;
-
+    console.log(this.props.formValues);
     return (
       <div className="container">
         <h4>Please confirm your entries</h4>
@@ -51,7 +72,7 @@ class SurveyFormReview extends Component {
         </button>
         <button
           className="btn blue accent-3 btn-flat right white-text"
-          onClick={() => submitSurvey(formValues, history)}
+          onClick={this.submitSurvey.bind(this)}
           type="button"
         >
           Send Survey

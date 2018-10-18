@@ -19,6 +19,7 @@ class SurveyNew extends Component {
     if (this.state.showFormReview) {
       return (
         <SurveyFormReview
+          isDraft
           onCancel={() => this.setState({ showFormReview: false })}
         />
       );
