@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Pie } from 'react-chartjs';
@@ -116,6 +117,13 @@ class ViewSurvey extends Component {
     return <div>{survey.length === 0 ? <Loader /> : this.renderContent()}</div>;
   }
 }
+
+ViewSurvey.propTypes = {
+  fetchSingleSurvey: PropTypes.func.isRequired,
+  deleteSurvey: PropTypes.func.isRequired,
+  survey: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+};
 
 function mapStateToProps({ survey }) {
   return {

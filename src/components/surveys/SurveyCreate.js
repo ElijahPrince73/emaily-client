@@ -1,5 +1,6 @@
-// SurveyForm shows a form for a user to add input
+/* eslint-disable */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { reduxForm, Field } from 'redux-form';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -67,7 +68,7 @@ class SurveyCreate extends Component {
           <button
             className="btn yellow accent-4 btn-flat right white-text push-right"
             onClick={
-                handleSubmit(values => this.props.handleDraft({
+                handleSubmit(values => handleDraft({
                   ...values,
                   isDraft: true,
                 }))}
@@ -80,6 +81,12 @@ class SurveyCreate extends Component {
     );
   }
 }
+
+SurveyCreate.propTypes = {
+  onSurveySubmit: PropTypes.func.isRequired,
+  handleDraft: PropTypes.func.isRequired,
+  handleSubmit: PropTypes.func.isRequired,
+};
 
 function mapStateToProps(state) {
   return {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Field, reduxForm } from 'redux-form';
+import LoaderSm from './LoaderSm';
 import ErrorMessage from './ErrorMessage';
 
 class LoginRegister extends Component {
@@ -25,6 +26,7 @@ class LoginRegister extends Component {
       handleRegister,
       handleSubmit,
       errorMessage,
+      loading,
     } = this.props;
 
     return (
@@ -81,6 +83,7 @@ class LoginRegister extends Component {
                 />
               </div>
             </div>
+            {loading ? <LoaderSm /> : null}
             <button
               className="btn waves-effect waves-light blue darken-3"
               type="submit"
@@ -130,7 +133,7 @@ class LoginRegister extends Component {
                 />
               </div>
             </div>
-
+            {loading ? <LoaderSm /> : null}
             <button
               className="btn waves-effect waves-light blue darken-3"
               type="submit"

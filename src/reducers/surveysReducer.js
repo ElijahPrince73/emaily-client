@@ -1,13 +1,13 @@
-import { FETCH_SURVEYS, REQUESTING, ERROR } from "../actions/types";
+import { FETCH_SURVEYS, REQUESTING, ERROR } from '../actions/types';
 
-export default function(state = [], action) {
+export default function (state = [], action) {
   switch (action.type) {
     case REQUESTING:
       return { isFetching: true };
     case ERROR:
       return {
         isFetching: false,
-        error: true
+        error: true,
       };
     case FETCH_SURVEYS:
       return action.payload;

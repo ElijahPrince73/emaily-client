@@ -1,4 +1,6 @@
+/* eslint-disable */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Loader from '../Loader';
@@ -85,6 +87,12 @@ class SurveyList extends Component {
     );
   }
 }
+
+SurveyList.propTypes = {
+  fetchSurveys: PropTypes.func.isRequired,
+  surveys: PropTypes.array.isRequired,
+};
+
 function mapStateToProps({ surveys, auth }) {
   return { surveys, auth };
 }

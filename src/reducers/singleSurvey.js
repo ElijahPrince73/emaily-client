@@ -1,6 +1,6 @@
-import { FETCH_SURVEY, REQUESTING } from "../actions/types";
+import { FETCH_SURVEY, REQUESTING } from '../actions/types';
 
-export default function(state = [], action) {
+export default function (state = [], action) {
   switch (action.type) {
     case REQUESTING:
       return {
@@ -11,7 +11,7 @@ export default function(state = [], action) {
       return {
         loading: false,
         ...action.payload,
-      }
+      };
     default:
       return state;
   }

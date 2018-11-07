@@ -1,12 +1,12 @@
-import { combineReducers } from "redux";
-import { reducer as reduxForm } from "redux-form/";
-import authReducer from "./authReducer";
-import surveysReducer from "./surveysReducer";
-import surveyReducer from "./singleSurvey";
+import { combineReducers } from 'redux';
+import { reducer as reduxForm } from 'redux-form/';
+import authReducer from './authReducer';
+import surveysReducer from './surveysReducer';
+import surveyReducer from './singleSurvey';
 
 export default combineReducers({
   auth: authReducer,
   form: reduxForm,
   surveys: surveysReducer,
-  survey: surveyReducer
+  survey: surveyReducer,
 });

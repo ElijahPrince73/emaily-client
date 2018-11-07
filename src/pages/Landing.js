@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { connect } from "react-redux";
-import LoginRegister from "../components/LoginRegister";
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import LoginRegister from '../components/LoginRegister';
 import * as actions from '../actions';
 
 class Landing extends Component {
@@ -17,8 +18,7 @@ class Landing extends Component {
   }
 
   render() {
-    const { auth } = this.props;
-
+    const { auth, loading } = this.props;
     return (
       <div className="row push-top-sm">
         <div className="container">
@@ -41,6 +41,7 @@ class Landing extends Component {
               handleLogin={this.handleLogin.bind(this)}
               handleRegister={this.handleRegister.bind(this)}
               errorMessage={auth}
+              loading={loading}
             />
           </div>
         </div>
@@ -48,9 +49,18 @@ class Landing extends Component {
     );
   }
 }
-function mapStateToProps({ auth }) {
+
+Landing.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+  loading: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+};
+
+function mapStateToProps(state) {
   return {
-    auth,
+    loading: state.survey.loading,
+    auth: state.auth,
   };
 }
 

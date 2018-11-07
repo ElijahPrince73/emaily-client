@@ -1,3 +1,4 @@
+/* eslint-disable */
 import axios from 'axios';
 import {
   FETCH_USER,
@@ -111,6 +112,7 @@ export const logoutUser = values => async (dispatch) => {
 
 // Register User
 export const registerUser = values => async (dispatch) => {
+  dispatch({ type: REQUESTING });
   await axios
     .post(process.env.REACT_APP_REGISTER_USER, values)
     .then((res) => {

@@ -1,5 +1,6 @@
-// SurveyFormReview show users their form inputs for review
+/* eslint-disable */
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 import * as actions from '../../actions';
@@ -82,6 +83,14 @@ class SurveyFormReview extends Component {
     );
   }
 }
+
+SurveyFormReview.propTypes = {
+  isDraft: PropTypes.string.isRequired,
+  formValues: PropTypes.array.isRequired,
+  submitSurvey: PropTypes.func.isRequired,
+  history: PropTypes.object.isRequired,
+};
+
 function mapStateToProps(state) {
   if (state.form.surveyForm) {
     return {
@@ -92,6 +101,7 @@ function mapStateToProps(state) {
     formValues: state.form.surveyCreate.values,
   };
 }
+
 export default connect(
   mapStateToProps,
   actions,
