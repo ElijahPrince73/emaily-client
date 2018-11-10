@@ -52,9 +52,9 @@ export const submitSurvey = (values, history) => async (dispatch) => {
   await axios.post(process.env.REACT_APP_SURVEYS, values, {
     headers: { 'x-auth': header },
   }).then((res) => {
-    // history.push('/surveys');
+    history.push('/surveys');
 
-    // dispatch({ type: FETCH_USER, payload: res.data });
+    dispatch({ type: FETCH_USER, payload: res.data });
   });
 };
 
